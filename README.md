@@ -14,7 +14,7 @@ To install the plugin, add it to your `netlify.toml` file.
 
   # All inputs are optional, so you can omit this section.
   # Defaults are shown below.
-  # You can also refer to the `critical` documentation: https://github.com/addyosmani/critical.
+  # You can also refer to `critical`’s documentation: https://github.com/addyosmani/critical.
   [plugins.inputs]
     # Whether to minify the generated critical-path CSS.
     minify = true
