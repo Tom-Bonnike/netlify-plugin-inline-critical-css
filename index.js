@@ -18,7 +18,7 @@ module.exports = {
       // Ignore penthouse/puppeteer max listener warnings.
       // See https://github.com/pocketjoso/penthouse/issues/250.
       // One penthouse call is made per page and per screen resolution.
-      process.setMaxListeners(htmlFiles.length * inputs.dimensions.length)
+      process.setMaxListeners(htmlFiles.length * inputs.dimensions.length + 1)
 
       const inlineCriticalPromises = htmlFiles.map((filePath) =>
         critical.generate({
