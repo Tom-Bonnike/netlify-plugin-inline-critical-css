@@ -1,1 +1,15 @@
 name: netlify-plugin-inline-critical-css
+inputs:
+  - name: minify
+    description: Whether to minify the generated critical-path CSS.
+    default: true
+  - name: extract
+    description: Whether to remove the inlined styles from any stylesheets referenced in the HTML. Use with caution. Removing the critical CSS per page results in a unique async loaded CSS file for every page, meaning you can’t rely on cache across multiple pages.
+    default: false
+  - name: dimensions
+    description: An array of objects containing `width` and `height` to deliver critical CSS for multiple screen resolutions.
+    default:
+      - width: 414
+        height: 896
+      - width: 1920
+        height: 1080

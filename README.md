@@ -11,6 +11,24 @@ To install the plugin, add it to your `netlify.toml` file.
 ```toml
 [[plugins]]
   package = "netlify-plugin-inline-critical-css"
+
+  # All inputs are optional, so you can omit this section.
+  # Defaults are shown below.
+  # You can also refer to the `critical` documentation: https://github.com/addyosmani/critical.
+  [plugins.inputs]
+    # Whether to minify the generated critical-path CSS.
+    minify = true
+
+    # Whether to remove the inlined styles from any stylesheets referenced in the HTML. Use with caution. Removing the critical CSS per page results in a unique async loaded CSS file for every page, meaning you can’t rely on cache across multiple pages.
+    extract = false
+
+    # An array of objects containing `width` and `height` to deliver critical CSS for multiple screen resolutions.
+    [[plugins.inputs.dimensions]]
+      width = 414
+      height = 896
+    [[plugins.inputs.dimensions]]
+      width = 1920
+      height = 1080
 ```
 
 Once installed and configured, the plugin will automatically run on the Netlify CI.

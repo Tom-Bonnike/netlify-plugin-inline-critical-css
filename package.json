@@ -22,5 +22,9 @@
   "engines": {
     "node": ">=8.6.0"
   },
-  "main": "index.js"
+  "main": "index.js",
+  "dependencies": {
+    "critical": "^1.3.9",
+    "readdirp": "^3.4.0"
+  }
 }
