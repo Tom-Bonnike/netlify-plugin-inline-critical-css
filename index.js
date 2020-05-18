@@ -12,10 +12,15 @@ module.exports = {
     const htmlFiles = await getHtmlFiles(constants.PUBLISH_DIR)
 
     try {
+      // Ignore penthouse/puppeteer max listener warnings.
+      // See https://github.com/pocketjoso/penthouse/issues/250.
+      // One penthouse call is made per page and per screen resolution.
+      process.setMaxListeners(htmlFiles.length * inputs.dimensions.length)
+
       const inlineCriticalPromises = htmlFiles.map((filePath) =>
         critical.generate({
           base: constants.PUBLISH_DIR,
-          // Overwrite files by passing the same file path for `src` and `target`.
+          // Overwrite files by passing the same path for `src` and `target`.
           src: filePath,
           target: filePath,
           inline: true,
