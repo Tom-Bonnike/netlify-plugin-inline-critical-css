@@ -15,9 +15,9 @@ module.exports = {
       const inlineCriticalPromises = htmlFiles.map((filePath) =>
         critical.generate({
           base: constants.PUBLISH_DIR,
-          // Overwrite files by passing the same file path for `src` and `dest`.
+          // Overwrite files by passing the same file path for `src` and `target`.
           src: filePath,
-          dest: filePath,
+          target: filePath,
           inline: true,
           minify: inputs.minify,
           extract: inputs.extract,
