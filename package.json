@@ -25,6 +25,7 @@
   "main": "index.js",
   "dependencies": {
     "critical": "^2.0.0-24",
-    "readdirp": "^3.4.0"
+    "readdirp": "^3.4.0",
+    "tiny-async-pool": "^1.1.0"
   }
 }
