@@ -1,6 +1,6 @@
 {
   "name": "netlify-plugin-inline-critical-css",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A Netlify plugin to extract and inline your critical CSS, built on top of the `critical` package.",
   "license": "MIT",
   "author": "Tom Bonnike (bonniketom@gmail.com)",
