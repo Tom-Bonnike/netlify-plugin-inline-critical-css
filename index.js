@@ -33,7 +33,14 @@ module.exports = {
           inline: true,
           minify: inputs.minify,
           extract: inputs.extract,
-          dimensions: inputs.dimensions
+          dimensions: inputs.dimensions,
+          // Force critical to run penthouse only on a single page at a time to
+          // avoid timeout issues.
+          concurrency: 1,
+          // Bump penthouse’s page load timeout to 2 minutes to avoid crashes
+          // which could cause lingering processes as it’s possible some pages
+          // can take a long time to load.
+          penthouse: { timeout: 120000 }
         })
       }
 
