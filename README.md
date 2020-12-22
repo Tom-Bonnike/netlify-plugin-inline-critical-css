@@ -6,7 +6,9 @@ Inlining the critical CSS directly into the HTML document eliminates additional 
 
 ## Usage and inputs
 
-To install the plugin, add it to your `netlify.toml` file.
+To install the plugin in the Netlify UI, use this [direct in-app installation link](https://app.netlify.com/plugins/netlify-plugin-inline-critical-css/install) or go to the [Plugins directory](https://app.netlify.com/plugins).
+
+For file-based installation, add it to your `netlify.toml` file.
 
 ```toml
 [[plugins]]
@@ -29,6 +31,12 @@ To install the plugin, add it to your `netlify.toml` file.
     [[plugins.inputs.dimensions]]
       width = 1920
       height = 1080
+```
+
+To complete file-based installation, from your project's base directory, use npm, yarn, or any other Node.js package manager to add the plugin to `devDependencies` in `package.json`.
+
+```bash
+npm install -D netlify-plugin-inline-critical-css
 ```
 
 Once installed and configured, the plugin will automatically run on the Netlify CI.
