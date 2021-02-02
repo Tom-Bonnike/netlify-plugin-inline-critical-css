@@ -43,11 +43,11 @@ To complete file-based installation, from your project’s base directory, use n
 npm install -D netlify-plugin-inline-critical-css
 ```
 
-Once installed and configured, the plugin will automatically run on the Netlify CI.
+Once installed and configured, the plugin will automatically run for all of your site’s deploys.
 
 ### Testing locally
 
-To test this plugin locally, you can use the [Netlify CLI](https://github.com/netlify/cli):
+To test this plugin locally, you can use the [Netlify CLI](https://docs.netlify.com/cli/get-started/#run-builds-locally):
 
 ```bash
 # Install the Netlify CLI.
