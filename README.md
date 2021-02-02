@@ -47,7 +47,7 @@ Once installed and configured, the plugin will automatically run for all of your
 
 ### Testing locally
 
-To test this plugin locally, you can use the [Netlify CLI](https://docs.netlify.com/cli/get-started/#run-builds-locally):
+To [test this plugin locally](https://docs.netlify.com/configure-builds/build-plugins/create-plugins/#local-plugins), you can use the [Netlify CLI](https://docs.netlify.com/cli/get-started/#run-builds-locally):
 
 ```bash
 # Install the Netlify CLI.
