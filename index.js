@@ -1,10 +1,10 @@
 const readdirp = require('readdirp')
 const critical = require('critical')
 
-const getHtmlFiles = async (directory, options = {}) => {
+const getHtmlFiles = async (directory, inputs = {}) => {
   const files = await readdirp.promise(directory, {
-    fileFilter: options.fileFilter,
-    directoryFilter: options.directoryFilter
+    fileFilter: inputs.fileFilter,
+    directoryFilter: inputs.directoryFilter
   })
 
   return files.map((file) => file.fullPath)
@@ -13,6 +13,7 @@ const getHtmlFiles = async (directory, options = {}) => {
 module.exports = {
   onPostBuild: async ({ inputs, constants, utils }) => {
     const htmlFiles = await getHtmlFiles(constants.PUBLISH_DIR, inputs)
+
     try {
       // Ignore penthouse/puppeteer max listener warnings.
       // See https://github.com/pocketjoso/penthouse/issues/250.
