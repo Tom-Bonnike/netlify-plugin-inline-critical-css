@@ -16,32 +16,28 @@ For file-based installation, add it to your `netlify.toml` file.
 
   # All inputs are optional, so you can omit this section.
   # Defaults are shown below.
-  # You can also refer to `critical`’s documentation: https://github.com/addyosmani/critical.
   [plugins.inputs]
+    # A filter used to target specific files in the publish directory. Be sure to only target HTML files. This option is passed onto the readdirp library, see https://github.com/paulmillr/readdirp#options for more info.
+    fileFilter = ["*.html"]
+
+    # A filter used to target or ignore specific directories in the publish directory. This option is passed onto the readdirp library, see https://github.com/paulmillr/readdirp#options for more info.
+    directoryFilter = ["!node_modules"]
+
+    # You can refer to `critical`’s documentation: https://github.com/addyosmani/critical for all options below.
     # Whether to minify the generated critical-path CSS.
     minify = true
 
-    # A filter used to target files in the publish directory. This option is
-    # passed onto the readdirp library. Be sure to target only HTML files.
-    fileFilter = "*.html"
-
-    # A list of directories to target or ignore. This is also passed on to
-    # readdirp.
-    directoryFilter = ["!node_modules"]
-
-    # Whether to remove the inlined styles from any stylesheets referenced in the HTML. Use with caution. Removing the critical CSS per page results in a unique async loaded CSS file for every page, meaning you can’t rely on cache across multiple pages.
+    # Whether to remove the inlined styles from any stylesheet referenced in the HTML. Use with caution. Removing the critical CSS per page results in a unique async loaded CSS file for every page, meaning you can’t rely on cache across multiple pages.
     extract = false
 
-    # An array of objects containing `width` and `height` to deliver critical CSS for multiple screen resolutions.
-    [[plugins.inputs.dimensions]]
-      width = 414
-      height = 896
-    [[plugins.inputs.dimensions]]
-      width = 1920
-      height = 1080
+    # An array of objects containing `width` and `height` properties to deliver critical CSS for multiple screen resolutions.
+    dimensions = [
+      { width = 414, height = 896 },
+      { width = 1920, height = 1080 }
+    ]
 ```
 
-To complete file-based installation, from your project's base directory, use npm, yarn, or any other Node.js package manager to add the plugin to `devDependencies` in `package.json`.
+To complete file-based installation, from your project’s base directory, use npm, yarn, or any other Node.js package manager to add the plugin to `devDependencies` in `package.json`.
 
 ```bash
 npm install -D netlify-plugin-inline-critical-css

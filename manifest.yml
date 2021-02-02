@@ -1,19 +1,19 @@
 name: netlify-plugin-inline-critical-css
 inputs:
+  - name: fileFilter
+    description: A filter used to target specific files in the publish directory. Be sure to only target HTML files. This option is passed onto the readdirp library, see https://github.com/paulmillr/readdirp#options for more info.
+    default: ['*.html']
+  - name: directoryFilter
+    description: A filter used to target or ignore specific directories in the publish directory. This option is passed onto the readdirp library, see https://github.com/paulmillr/readdirp#options for more info.
+    default: ['!node_modules']
   - name: minify
     description: Whether to minify the generated critical-path CSS.
     default: true
   - name: extract
-    description: Whether to remove the inlined styles from any stylesheets referenced in the HTML. Use with caution. Removing the critical CSS per page results in a unique async loaded CSS file for every page, meaning you can’t rely on cache across multiple pages.
+    description: Whether to remove the inlined styles from any stylesheet referenced in the HTML. Use with caution. Removing the critical CSS per page results in a unique async loaded CSS file for every page, meaning you can’t rely on cache across multiple pages.
     default: false
-  - name: fileFilter
-    description: Option passed on to readdirp to target files within the build directory. See https://github.com/paulmillr/readdirp#options for more info.
-    default: '*.html'
-  - name: directoryFilter
-    description: Option passed on to readdirp to ignore files within the build directory. See https://github.com/paulmillr/readdirp#options for more info.
-    default: ['!node_modules']
   - name: dimensions
-    description: An array of objects containing `width` and `height` to deliver critical CSS for multiple screen resolutions.
+    description: An array of objects containing `width` and `height` properties to deliver critical CSS for multiple screen resolutions.
     default:
       - width: 414
         height: 896
