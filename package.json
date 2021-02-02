@@ -24,7 +24,7 @@
   },
   "main": "index.js",
   "dependencies": {
-    "critical": "^2.0.1",
-    "readdirp": "^3.4.0"
+    "critical": "^2.0.6",
+    "readdirp": "^3.5.0"
   }
 }
