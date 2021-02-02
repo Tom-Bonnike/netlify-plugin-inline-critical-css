@@ -6,6 +6,12 @@ inputs:
   - name: extract
     description: Whether to remove the inlined styles from any stylesheets referenced in the HTML. Use with caution. Removing the critical CSS per page results in a unique async loaded CSS file for every page, meaning you can’t rely on cache across multiple pages.
     default: false
+  - name: fileFilter
+    description: Option passed on to readdirp to target files within the build directory. See https://github.com/paulmillr/readdirp#options for more info.
+    default: '*.html'
+  - name: directoryFilter
+    description: Option passed on to readdirp to ignore files within the build directory. See https://github.com/paulmillr/readdirp#options for more info.
+    default: ['!node_modules']
   - name: dimensions
     description: An array of objects containing `width` and `height` to deliver critical CSS for multiple screen resolutions.
     default:

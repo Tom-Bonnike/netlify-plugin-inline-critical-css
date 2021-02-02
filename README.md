@@ -21,6 +21,14 @@ For file-based installation, add it to your `netlify.toml` file.
     # Whether to minify the generated critical-path CSS.
     minify = true
 
+    # A filter used to target files in the publish directory. This option is
+    # passed onto the readdirp library. Be sure to target only HTML files.
+    fileFilter = "*.html"
+
+    # A list of directories to target or ignore. This is also passed on to
+    # readdirp.
+    directoryFilter = ["!node_modules"]
+
     # Whether to remove the inlined styles from any stylesheets referenced in the HTML. Use with caution. Removing the critical CSS per page results in a unique async loaded CSS file for every page, meaning you can’t rely on cache across multiple pages.
     extract = false
 
