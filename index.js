@@ -31,7 +31,6 @@ module.exports = {
           src: filePath,
           target: filePath,
           inline: true,
-          minify: inputs.minify,
           extract: inputs.extract,
           dimensions: inputs.dimensions,
           // Force critical to run penthouse only on a single page at a time to

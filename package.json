@@ -20,11 +20,11 @@
     "css"
   ],
   "engines": {
-    "node": ">=10.3.0"
+    "node": "^10 || ^12 || >=14"
   },
   "main": "index.js",
   "dependencies": {
-    "critical": "^2.0.6",
+    "critical": "^4.0.1",
     "readdirp": "^3.6.0"
   }
 }

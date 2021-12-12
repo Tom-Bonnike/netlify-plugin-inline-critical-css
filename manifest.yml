@@ -6,9 +6,6 @@ inputs:
   - name: directoryFilter
     description: A filter used to target or ignore specific directories in the publish directory. This option is passed onto the readdirp library, see https://github.com/paulmillr/readdirp#options for more info.
     default: ['!node_modules']
-  - name: minify
-    description: Whether to minify the generated critical-path CSS.
-    default: true
   - name: extract
     description: Whether to remove the inlined styles from any stylesheet referenced in the HTML. Use with caution. Removing the critical CSS per page results in a unique async loaded CSS file for every page, meaning you can’t rely on cache across multiple pages.
     default: false

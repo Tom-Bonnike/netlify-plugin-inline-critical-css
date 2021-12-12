@@ -24,9 +24,6 @@ For file-based installation, add it to your `netlify.toml` file.
     directoryFilter = ["!node_modules"]
 
     # You can refer to `critical`’s documentation: https://github.com/addyosmani/critical for all options below.
-    # Whether to minify the generated critical-path CSS.
-    minify = true
-
     # Whether to remove the inlined styles from any stylesheet referenced in the HTML. Use with caution. Removing the critical CSS per page results in a unique async loaded CSS file for every page, meaning you can’t rely on cache across multiple pages.
     extract = false
 
