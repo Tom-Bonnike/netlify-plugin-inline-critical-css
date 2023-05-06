@@ -1,18 +1,25 @@
 const readdirp = require('readdirp')
 const critical = require('critical')
 
-const getHtmlFiles = async (directory, inputs = {}) => {
-  const files = await readdirp.promise(directory, {
-    fileFilter: inputs.fileFilter,
-    directoryFilter: inputs.directoryFilter
-  })
-
-  return files.map((file) => file.fullPath)
+const getHtmlFiles = async (directories, inputs = {}) => {
+  const files = []
+  for (const directory of directories) {
+    const directoryFiles = await readdirp.promise(directory, {
+      fileFilter: inputs.fileFilter,
+      directoryFilter: inputs.directoryFilter
+    })
+    files.push(...directoryFiles)
+  }
+  return files.map((file) => ({
+    fullPath: file.fullPath,
+    outputDir: inputs.outputDir || directory,
+    options: inputs.options || {}
+  }))
 }
 
 module.exports = {
   onPostBuild: async ({ inputs, constants, utils }) => {
-    const htmlFiles = await getHtmlFiles(constants.PUBLISH_DIR, inputs)
+    const htmlFiles = await getHtmlFiles(inputs.directories, inputs)
 
     try {
       // Ignore penthouse/puppeteer max listener warnings.
@@ -24,15 +31,17 @@ module.exports = {
       // issues, at the cost of a slower execution.
       // `critical` might offer this feature at some point:
       // https://github.com/addyosmani/critical/issues/111
-      for (const filePath of htmlFiles) {
+      for (const { fullPath, outputDir, options } of htmlFiles) {
+        const targetPath = `${outputDir}/${fullPath.replace(constants.PUBLISH_DIR, '')}`
+
         await critical.generate({
           base: constants.PUBLISH_DIR,
           // Overwrite files by passing the same path for `src` and `target`.
-          src: filePath,
-          target: filePath,
+          src: fullPath,
+          target: targetPath,
           inline: true,
-          extract: inputs.extract,
-          dimensions: inputs.dimensions,
+          extract: options.extract,
+          dimensions: options.dimensions || inputs.dimensions,
           // Force critical to run penthouse only on a single page at a time to
           // avoid timeout issues.
           concurrency: 1,
@@ -41,9 +50,9 @@ module.exports = {
           // can take a long time to load.
           penthouse: { timeout: 120000 }
         })
-      }
 
-      console.log('Critical CSS successfully inlined!')
+        console.log(`Critical CSS successfully inlined for ${fullPath}!`)
+      }
     } catch (error) {
       return utils.build.failBuild('Failed to inline critical CSS.', { error })
     }
